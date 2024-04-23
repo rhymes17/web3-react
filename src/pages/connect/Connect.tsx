@@ -9,9 +9,6 @@ const Connect = () => {
 
   const {hasProvider, connectMetaMask, isConnected, wallet} = useContext(WalletContext)
 
-  console.log(isConnected)
-  console.log(wallet)
-
   return (
     <div className="rounded-lg p-3 w-full h-full backdrop-blur-xl bg-gradient-to-r from-white/10 to-white/10">
         <div className="flex justify-center items-center">
