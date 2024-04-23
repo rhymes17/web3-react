@@ -62,7 +62,7 @@ const SendEth = () => {
         <HiMiniEllipsisVertical className="cursor-pointer text-xl"/>
       </div>
 
-          <GlassMorph px={5} py={5} gap={5}>
+          <GlassMorph px={5} py={5} gap={5} col={true} itemsAlign={false}>
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center">
               <h1>To</h1>
