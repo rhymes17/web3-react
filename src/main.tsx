@@ -6,6 +6,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Connect from './pages/Connect'
 import Transaction from './pages/Transaction'
 import SendEth from './pages/SendEth/SendEth'
+import WalletContextProvider from './context/WalletContext.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')!).render(
   
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <WalletContextProvider>
+
+     <RouterProvider router={router} />
+    </WalletContextProvider>
   </React.StrictMode>,
 )

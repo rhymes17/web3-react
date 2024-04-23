@@ -1,9 +1,9 @@
 import { ReactNode } from "react"
 
 type ButtonType = {
-    icon : ReactNode,
+    icon ?: ReactNode,
     text: string,
-    handleClick : () => void
+    handleClick ?: () => void
 }
 
 const Button = ({icon, text, handleClick} : ButtonType) => {
