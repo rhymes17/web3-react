@@ -1,7 +1,7 @@
 const Transaction = () => {
   return (
     <div>
-        
+        Transaction
     </div>
   )
 }
