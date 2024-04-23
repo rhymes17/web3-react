@@ -5,6 +5,7 @@ import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Connect from './pages/Connect'
 import Transaction from './pages/Transaction'
+import SendEth from './pages/SendEth/SendEth'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route path="/" element={<Connect />}/>
         <Route path="/transactions" element={<Transaction />} />
+        <Route path="/sendEth" element={<SendEth />} />
       </Route>
     </>
   )
