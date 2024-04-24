@@ -6,6 +6,7 @@ import { RiSendPlaneLine } from "react-icons/ri";
 import GlassMorph from "../../layout/GlassMorph";
 import { sendEth } from "../../utils/helper";
 import { WalletContext } from "../../context/WalletContext";
+import InputWrapper from "./InputWrapper";
 
 const SendEth = () => {
   const [amount, setAmount] = useState<string>("");
@@ -13,7 +14,7 @@ const SendEth = () => {
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const {hasProvider} = useContext(WalletContext)
+  const { hasProvider } = useContext(WalletContext);
 
   const handleSubmit = async () => {
     try {
@@ -22,7 +23,7 @@ const SendEth = () => {
         address,
         setError,
         setErrorMessage,
-        hasProvider
+        hasProvider,
       });
 
       setAddress("");
@@ -42,39 +43,8 @@ const SendEth = () => {
       </div>
 
       <GlassMorph px={5} py={5} gap={4} col={true} itemsAlign={false}>
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between items-center">
-            <h1>To</h1>
-            <button
-              className="shadow-lg bg-red-500 rounded-md px-2 py-1"
-              onClick={() => setAddress("")}
-            >
-              Clear
-            </button>
-          </div>
-          <input
-            className="bg-[#1A1C28] outline-none px-3 py-2 rounded-lg"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col gap-3">
-          <div className="flex justify-between items-center">
-            <h1>Amount</h1>
-            <button
-              className="shadow-lg bg-red-500 rounded-md px-2 py-1"
-              onClick={() => setAmount("0")}
-            >
-              Clear
-            </button>
-          </div>
-          <input
-            className="bg-[#1A1C28] outline-none px-3 py-2 rounded-lg"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-        </div>
-
+        <InputWrapper label={"To"} value={address} setValue={setAddress} placeholder={"Enter Address"}/>
+        <InputWrapper label={"Amount"} value={amount} setValue={setAmount} placeholder={"Enter Amount"}/>
         <Button
           text={"Send"}
           icon={<RiSendPlaneLine className="text-xl" />}

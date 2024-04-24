@@ -5,6 +5,7 @@ import { getTxURL, getURL } from "../../constants";
 import { formatHash } from "../../utils/format";
 import { FaEthereum } from "react-icons/fa6";
 import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 interface ITransaction {
   address: string;
@@ -65,12 +66,7 @@ const Transaction = () => {
       {/* Search */}
 
       <GlassMorph gap={3} px={3} py={2} col={false} itemsAlign={true}>
-        <input
-          className="bg-[#1A1C28] flex-1 outline-none px-3 py-2 rounded-lg"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder="Enter address to search it's transactions."
-        />
+        <Input value={address} setValue={setAddress} placeholder={"Enter address to search it's transactions."} name={"Search"} />
         <CiSearch className="text-2xl cursor-pointer" onClick={handleSearch} />
       </GlassMorph>
 
