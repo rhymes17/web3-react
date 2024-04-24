@@ -39,17 +39,15 @@ const SendEth = () => {
 
   const handleSubmit = async() => {
     try {
-      const res = await startPayment({
+      await startPayment({
         amount,
         address
       })
 
-      console.log(res?.hash)
       setAddress("")
       setAmount("")
     } catch (error : any) {
       setErrorMessage(error.message)
-
     }
   }
 
@@ -62,7 +60,7 @@ const SendEth = () => {
         <HiMiniEllipsisVertical className="cursor-pointer text-xl"/>
       </div>
 
-          <GlassMorph px={5} py={5} gap={5} col={true} itemsAlign={false}>
+          <GlassMorph px={5} py={5} gap={4} col={true} itemsAlign={false}>
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center">
               <h1>To</h1>

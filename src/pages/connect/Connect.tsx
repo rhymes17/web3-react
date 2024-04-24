@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Connect = () => {
 
-  const {hasProvider, connectMetaMask, isConnected, wallet} = useContext(WalletContext)
+  const {hasProvider, connectMetaMask, isConnected} = useContext(WalletContext)
 
   return (
     <div className="rounded-lg p-3 w-full h-full backdrop-blur-xl bg-gradient-to-r from-white/10 to-white/10">
