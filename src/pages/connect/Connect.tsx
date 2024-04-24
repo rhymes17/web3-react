@@ -22,7 +22,7 @@ const Connect = () => {
       {hasProvider ? (
         isConnected ? (
           <div className=" px-5 py-2 rounded-xl">
-            <Link to="/transactions">
+            <Link to="/sendEth">
               <h1>Already Connected </h1>
               <h1 className="underline decoration-[#00D9DE]">
                 Would you like to make a transaction instead!
