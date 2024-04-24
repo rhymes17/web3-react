@@ -15,7 +15,7 @@ const InputWrapper = ({ label, value, setValue, placeholder }: InputWrapper) => 
         <h1>{label}</h1>
         <button
           className="shadow-lg bg-red-500 rounded-md px-2 py-1"
-          onClick={() => setValue("0")}
+          onClick={() => setValue("")}
         >
           Clear
         </button>

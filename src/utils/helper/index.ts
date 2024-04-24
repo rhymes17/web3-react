@@ -1,4 +1,6 @@
 import { ethers } from "ethers"
+import { getURL } from "../../constants";
+import axios from "axios";
 
 interface ISendEth {
     amount: string,
@@ -6,6 +8,26 @@ interface ISendEth {
     setError : (value: React.SetStateAction<boolean>) => void,
     setErrorMessage : (value: React.SetStateAction<string>) => void,
     hasProvider: boolean
+}
+
+interface ITransaction {
+  address: string;
+  topics: string[];
+  data: string;
+  blockNumber: string;
+  blockHash: string;
+  timeStamp: string;
+  gasPrice: string;
+  gasUsed: string;
+  logIndex: string;
+  hash: string;
+  transactionIndex: string;
+}
+
+interface IQueryRes {
+  status: string,
+  message: string,
+  result : string | ITransaction[]
 }
 
 export const sendEth = async({amount, address, setError, setErrorMessage, hasProvider} : ISendEth) => {
@@ -29,3 +51,10 @@ export const sendEth = async({amount, address, setError, setErrorMessage, hasPro
       setErrorMessage(error.message)
     }
   }
+
+
+  export const getTransactions = async (address: string): Promise<IQueryRes> => {
+    const URI = getURL(address);
+    const res = await axios.get(URI);
+    return res.data;
+  };

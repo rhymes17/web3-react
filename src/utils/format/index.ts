@@ -8,11 +8,11 @@ export const formatChainAsNum = (chainIdHex: string) => {
   return chainIdNum;
 };
 
-export const formatHash = (hash: string) => {
+export const formatHash = (hash: string = "Loading....") => {
   const res =
-    hash.substring(0, 3) +
+    hash.substring(0, 4) +
     "......." +
-    hash.substring(hash.length - 5, hash.length);
+    hash.substring(hash.length - 4, hash.length);
 
   return res;
 };

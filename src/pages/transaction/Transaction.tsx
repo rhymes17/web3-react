@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GlassMorph from "../../layout/GlassMorph";
 import { CiSearch } from "react-icons/ci";
-import { getTxURL, getURL } from "../../constants";
+import { getTxURL } from "../../constants";
 import { formatHash } from "../../utils/format";
 import { FaEthereum } from "react-icons/fa6";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import { useQuery } from "@tanstack/react-query";
+import { getTransactions } from "../../utils/helper";
 
 interface ITransaction {
   address: string;
@@ -27,34 +29,36 @@ const Transaction = () => {
     [] as ITransaction[]
   );
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleSearch = async () => {
-    const URI = getURL(address);
-    setIsLoading(true);
-    setError(false);
+  const [fetch, setFetch] = useState<boolean>(false);
 
-    await fetch(URI)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        const txs = res.result;
-        if (txs.length === 0) {
-          setError(true);
-          setErrorMessage(res.message);
-        } else if (typeof txs === "string") {
-          setError(true);
-          setErrorMessage(txs);
-        } else {
-          setTransations(txs);
-        }
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setIsLoading(false));
+  const { data: res, isLoading } = useQuery({
+    queryKey: ["txRes"],
+    queryFn: () => getTransactions(address),
+    enabled: fetch,
+  });
+
+  const handleSearch = async () => {
+    setFetch(true);
   };
+
+  useEffect(() => {
+    if (res) {
+      const txs = res.result;
+      if (txs.length === 0) {
+        setError(true);
+        setErrorMessage(res.message);
+      } else if (typeof txs === "string") {
+        setError(true);
+        setErrorMessage(txs);
+      } else {
+        setTransations(txs);
+      }
+    }
+    setFetch(false);
+  }, [res]);
 
   const handleClick = (address: string) => {
     const url = getTxURL(address);
@@ -66,7 +70,12 @@ const Transaction = () => {
       {/* Search */}
 
       <GlassMorph gap={3} px={3} py={2} col={false} itemsAlign={true}>
-        <Input value={address} setValue={setAddress} placeholder={"Enter address to search it's transactions."} name={"Search"} />
+        <Input
+          value={address}
+          setValue={setAddress}
+          placeholder={"Enter address to search it's transactions."}
+          name={"Search"}
+        />
         <CiSearch className="text-2xl cursor-pointer" onClick={handleSearch} />
       </GlassMorph>
 
@@ -74,7 +83,9 @@ const Transaction = () => {
         {isLoading ? (
           <h1>Laoding.....</h1>
         ) : error ? (
-          <h1 className="px-3 py-3 text-2xl text-red-500">{errorMessage}</h1>
+          <h1 className="px-3 py-3 w-[80%] mx-auto text-xl text-red-500">
+            {errorMessage}
+          </h1>
         ) : (
           transactions?.map((trans) => (
             <Button

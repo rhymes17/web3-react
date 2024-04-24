@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { WalletContext } from "../../context/WalletContext"
+import { formatHash } from "../../utils/format"
 
 const Balance = () => {
     const {wallet} = useContext(WalletContext)
@@ -12,7 +13,7 @@ const Balance = () => {
             {/* Element extra */}
           <div className="w-[10px] h-[10px] rounded-full bg-[#FDD401]"></div>                
 
-            <h1 className="">{wallet?.accounts[0]?.substring(0, 6)}...</h1>
+            <h1 className="">{formatHash(wallet.accounts[0])}</h1>
 
             <div className="absolute left-4 blur-md w-[10px] h-[10px] bg-[#FDD401] rounded-full "></div>
         </div>
