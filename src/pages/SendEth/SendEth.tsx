@@ -34,7 +34,7 @@ const SendEth = () => {
   };
 
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex flex-col gap-4">
       <Balance />
 
       <div className="flex justify-between items-center px-2">

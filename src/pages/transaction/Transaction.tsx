@@ -31,7 +31,6 @@ const Transaction = () => {
 
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-
   const [fetch, setFetch] = useState<boolean>(false);
 
   const { data: res, isLoading } = useQuery({
@@ -79,11 +78,11 @@ const Transaction = () => {
         <CiSearch className="text-2xl cursor-pointer" onClick={handleSearch} />
       </GlassMorph>
 
-      <GlassMorph gap={7} px={4} py={5} col={true} itemsAlign={false}>
+      <GlassMorph gap={7} px={4} py={5} col={true} itemsAlign={true}>
         {isLoading ? (
           <h1>Laoding.....</h1>
         ) : error ? (
-          <h1 className="px-3 py-3 w-[80%] mx-auto text-xl text-red-500">
+          <h1 className="px-3 py-3 mx-auto text-xl text-red-500">
             {errorMessage}
           </h1>
         ) : (

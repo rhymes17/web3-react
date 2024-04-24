@@ -7,7 +7,7 @@ const PrivateRoute = () => {
     const {isConnected, hasProvider} = useContext(WalletContext)
 
   return (
-    {(!isConnected || !hasProvider) ? <Navigate to="/"/> : <Outlet />}
+    (!isConnected || !hasProvider) ? <Navigate to="/"/> : <Outlet />
   )
 }
 
