@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useCallback, useEffect, useState } from "react";
-import { formatBalance } from "../utils";
+import { formatBalance } from "../utils/format";
 import detectEthereumProvider from "@metamask/detect-provider";
 
 interface IWallet  {

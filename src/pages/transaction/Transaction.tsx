@@ -2,7 +2,7 @@ import { useState } from "react";
 import GlassMorph from "../../layout/GlassMorph";
 import { CiSearch } from "react-icons/ci";
 import { getTxURL, getURL } from "../../constants";
-import { formatHash } from "../../utils";
+import { formatHash } from "../../utils/format";
 import { FaEthereum } from "react-icons/fa6";
 import Button from "../../components/Button";
 
